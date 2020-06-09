@@ -23,6 +23,7 @@ namespace myTiles {
 `
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Chest, function (sprite, otherSprite) {
+    info.changeScoreBy(1)
     otherSprite.setImage(img`
 . b b b b b b b b b b b b b b . 
 b e 4 4 4 4 4 4 4 4 4 4 4 4 4 b 
@@ -52,6 +53,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonOrange, function (s
     tiles.setWallAt(tiles.getTileLocation(7, 11), false)
     tiles.setTileAt(tiles.getTileLocation(7, 11), sprites.dungeon.floorDark4)
 })
+info.setScore(0)
 tiles.setTilemap(tiles.createTilemap(
             hex`1000100001070806000000000000000000000000022e0c0a070807070807070807070706100c0c0c2e0c2d0c0c2e0c2e0c0c2e0d210c2d0c0c0c0c0c0c0c0c0c0c0c0c0d02320c0b20202020200e0c0c0c0c2d23032020050000000000022d0c2e0c0c0d141e1f1e1e16000000020c0c0b202005170c0c313119000000020c0c0d000000182e312f2d1a0001070f0c0c0a07070617312f300c091e100c0c2d0c0c0c0c0d172f2d2f0c2f2f220c2e0c0c0c2e0c25180c2f312f0c2e220c0c0c0c0c0c0c0d170c0c312f281b100c0c0c0c2d0c0c23170c2f2f0c1a00212d0c2e2e0c0c2d25151b1b1c1b1d00210c0c0c0c0c2d0c0d00000000000000032004262026202005`,
             img`
