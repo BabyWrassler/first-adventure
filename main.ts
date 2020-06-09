@@ -1,3 +1,6 @@
+namespace SpriteKind {
+    export const Chest = SpriteKind.create()
+}
 namespace myTiles {
     //% blockIdentity=images._tile
     export const tile0 = img`
@@ -19,10 +22,30 @@ namespace myTiles {
 . . . . . . . . . . . . . . . . 
 `
 }
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
-	
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Chest, function (sprite, otherSprite) {
+    otherSprite.setImage(img`
+. b b b b b b b b b b b b b b . 
+b e 4 4 4 4 4 4 4 4 4 4 4 4 4 b 
+b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
+b e e 4 4 4 4 4 4 4 4 4 4 e e b 
+b b b b b b b d d b b b b b b b 
+. b b b b b b c c b b b b b b . 
+b c c c c c b c c b c c c c c b 
+b c c c c c c b b c c c c c c b 
+b c c c c c c c c c c c c c c b 
+b c c c c c c c c c c c c c c b 
+b b b b b b b b b b b b b b b b 
+b e e e e e e e e e e e e e e b 
+b e e e e e e e e e e e e e e b 
+b c e e e e e e e e e e e e c b 
+b b b b b b b b b b b b b b b b 
+. b b . . . . . . . . . . b b . 
+`)
+    music.baDing.play()
+    game.over(true)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonOrange, function (sprite, location) {
+    music.magicWand.play()
     tiles.setTileAt(location, sprites.dungeon.floorDark4)
     tiles.setWallAt(tiles.getTileLocation(7, 10), false)
     tiles.setTileAt(tiles.getTileLocation(7, 10), sprites.dungeon.floorDark0)
@@ -69,7 +92,7 @@ b e e e e e e e e e e e e e e b
 b c e e e e e e e e e e e e c b 
 b b b b b b b b b b b b b b b b 
 . b b . . . . . . . . . . b b . 
-`, SpriteKind.Food)
+`, SpriteKind.Chest)
 tiles.placeOnTile(chest, tiles.getTileLocation(1, 7))
 let mySprite = sprites.create(img`
 . . . . c c c c c c . . . . . . 
