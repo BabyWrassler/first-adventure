@@ -52,6 +52,25 @@ tiles.setTilemap(tiles.createTilemap(
             [myTiles.tile0,sprites.dungeon.greenOuterNorthWest,sprites.dungeon.greenOuterWest1,sprites.dungeon.greenOuterSouthEast,sprites.dungeon.greenOuterSouth0,sprites.dungeon.greenOuterSouthWest,sprites.dungeon.greenOuterNorthEast,sprites.dungeon.greenOuterNorth0,sprites.dungeon.greenOuterNorth2,sprites.dungeon.purpleInnerSouthWest,sprites.dungeon.greenInnerSouthWest,sprites.dungeon.greenInnerNorthWest,sprites.dungeon.floorDark0,sprites.dungeon.greenOuterEast0,sprites.dungeon.greenInnerNorthEast,sprites.dungeon.greenInnerSouthEast,sprites.dungeon.greenOuterWest2,sprites.dungeon.greenSwitchUp,sprites.dungeon.greenSwitchDown,sprites.dungeon.floorLight0,sprites.dungeon.purpleOuterNorthWest,sprites.dungeon.purpleOuterSouthEast,sprites.dungeon.purpleOuterNorthEast,sprites.dungeon.purpleOuterWest0,sprites.dungeon.purpleOuterWest1,sprites.dungeon.purpleOuterEast0,sprites.dungeon.purpleOuterEast1,sprites.dungeon.purpleOuterSouth1,sprites.dungeon.purpleOuterSouth0,sprites.dungeon.purpleOuterSouthWest,sprites.dungeon.purpleOuterNorth0,sprites.dungeon.purpleOuterNorth1,sprites.dungeon.greenOuterSouth1,sprites.dungeon.greenOuterWest0,sprites.dungeon.doorLockedWest,sprites.dungeon.greenOuterEast1,sprites.dungeon.purpleSwitchUp,sprites.dungeon.greenOuterEast2,sprites.dungeon.greenOuterSouth2,sprites.dungeon.purpleInnerNorthEast,sprites.dungeon.purpleInnerNorthWest,sprites.dungeon.doorClosedEast,sprites.dungeon.darkGroundSouthWest1,sprites.dungeon.floorDark5,sprites.dungeon.floorDark3,sprites.dungeon.floorDark1,sprites.dungeon.floorDark4,sprites.dungeon.floorLight4,sprites.dungeon.floorLight3,sprites.dungeon.floorMixed,sprites.dungeon.buttonOrange],
             TileScale.Sixteen
         ))
+let chest = sprites.create(img`
+. . b b b b b b b b b b b b . . 
+. b e 4 4 4 4 4 4 4 4 4 4 e b . 
+b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
+b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
+b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
+b e e 4 4 4 4 4 4 4 4 4 4 e e b 
+b e e e e e e e e e e e e e e b 
+b e e e e e e e e e e e e e e b 
+b b b b b b b d d b b b b b b b 
+c b b b b b b c c b b b b b b c 
+c c c c c c b c c b c c c c c c 
+b e e e e e c b b c e e e e e b 
+b e e e e e e e e e e e e e e b 
+b c e e e e e e e e e e e e c b 
+b b b b b b b b b b b b b b b b 
+. b b . . . . . . . . . . b b . 
+`, SpriteKind.Food)
+tiles.placeOnTile(chest, tiles.getTileLocation(1, 7))
 let mySprite = sprites.create(img`
 . . . . c c c c c c . . . . . . 
 . . . c 6 7 7 7 7 6 c . . . . . 
@@ -73,22 +92,3 @@ f 6 1 1 1 1 1 6 6 6 6 6 c f . .
 mySprite.setPosition(151, 54)
 scene.cameraFollowSprite(mySprite)
 controller.moveSprite(mySprite)
-let mySprite2 = sprites.create(img`
-. . b b b b b b b b b b b b . . 
-. b e 4 4 4 4 4 4 4 4 4 4 e b . 
-b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
-b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
-b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
-b e e 4 4 4 4 4 4 4 4 4 4 e e b 
-b e e e e e e e e e e e e e e b 
-b e e e e e e e e e e e e e e b 
-b b b b b b b d d b b b b b b b 
-c b b b b b b c c b b b b b b c 
-c c c c c c b c c b c c c c c c 
-b e e e e e c b b c e e e e e b 
-b e e e e e e e e e e e e e e b 
-b c e e e e e e e e e e e e c b 
-b b b b b b b b b b b b b b b b 
-. b b . . . . . . . . . . b b . 
-`, SpriteKind.Food)
-mySprite2.setPosition(4, 22)
