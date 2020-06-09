@@ -22,13 +22,16 @@ namespace myTiles {
 . . . . . . . . . . . . . . . . 
 `
 }
+// When the player steps on a trap, they fall in a pit
+// and the game ends.
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorDark3, function (sprite, location) {
     sprite.destroy()
     tiles.setTileAt(location, sprites.dungeon.darkGroundSouthWest1)
+    game.showLongText("You fell in a pit!", DialogLayout.Bottom)
     game.over(false)
 })
+// When player finds treasure chest, they win.
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Chest, function (sprite, otherSprite) {
-    info.changeScoreBy(1)
     otherSprite.setImage(img`
 . b b b b b b b b b b b b b b . 
 b e 4 4 4 4 4 4 4 4 4 4 4 4 4 b 
@@ -50,12 +53,13 @@ b b b b b b b b b b b b b b b b
     music.baDing.play()
     game.over(true)
 })
+// When player pushes button, open door.
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.buttonOrange, function (sprite, location) {
     music.magicWand.play()
     tiles.setTileAt(location, sprites.dungeon.floorDark4)
-    tiles.setWallAt(tiles.getTileLocation(6, 14), false)
+    tiles.setWallAt(tiles.getTileLocation(7, 14), false)
+    tiles.setTileAt(tiles.getTileLocation(7, 14), sprites.dungeon.floorDark0)
 })
-info.setScore(0)
 tiles.setTilemap(tiles.createTilemap(
             hex`1000100001070806000000000000000000000000022e0c0a070807070807070807070706100c0c0c2e0c2d0c0c2e0c2e0c0c2c0d210c2d0c0c0c0c0c0c0c0c0c0c0c0c0d02320c0b20202020200e0c0c0c0c2d23032020050000000000022d0c2e0c0c0d141e1f1e1e16000000020c0c0b202005170c0c313119000000020c0c0d000000182e312f2d1a0001070f0c0c0a07070617312f2c0c1a00100c0c2d0c0c0c0c0d172f2d2f0c1a00020c2e0c0c0c2e0c25180c2f2d2f1a00210c0c0c0c0c0c0c0d172c2c312f1a00210c0c0c0c2d0c0c23172d2f2f0c091f0f2d0c2e2e0c0c2d25182f2f2f2f0c0c220c0c0c2c0c2d0c0d151b1b1b1b1b1b042004262026202005`,
             img`
@@ -73,7 +77,7 @@ tiles.setTilemap(tiles.createTilemap(
 2 . . . . 2 . 2 . . . . . . . 2 
 2 . . . . 2 . 2 . . . . . . . 2 
 2 . . . . 2 2 2 . . . . . . . 2 
-2 . . . . . . . . . . . . . . 2 
+2 . . . . . . 2 . . . . . . . 2 
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
 `,
             [myTiles.tile0,sprites.dungeon.greenOuterNorthWest,sprites.dungeon.greenOuterWest1,sprites.dungeon.greenOuterSouthEast,sprites.dungeon.greenOuterSouth0,sprites.dungeon.greenOuterSouthWest,sprites.dungeon.greenOuterNorthEast,sprites.dungeon.greenOuterNorth0,sprites.dungeon.greenOuterNorth2,sprites.dungeon.purpleInnerSouthWest,sprites.dungeon.greenInnerSouthWest,sprites.dungeon.greenInnerNorthWest,sprites.dungeon.floorDark0,sprites.dungeon.greenOuterEast0,sprites.dungeon.greenInnerNorthEast,sprites.dungeon.greenInnerSouthEast,sprites.dungeon.greenOuterWest2,sprites.dungeon.greenSwitchUp,sprites.dungeon.greenSwitchDown,sprites.dungeon.floorLight0,sprites.dungeon.purpleOuterNorthWest,sprites.dungeon.purpleOuterSouthEast,sprites.dungeon.purpleOuterNorthEast,sprites.dungeon.purpleOuterWest0,sprites.dungeon.purpleOuterWest1,sprites.dungeon.purpleOuterEast0,sprites.dungeon.purpleOuterEast1,sprites.dungeon.purpleOuterSouth1,sprites.dungeon.purpleOuterSouth0,sprites.dungeon.purpleOuterSouthWest,sprites.dungeon.purpleOuterNorth0,sprites.dungeon.purpleOuterNorth1,sprites.dungeon.greenOuterSouth1,sprites.dungeon.greenOuterWest0,sprites.dungeon.doorLockedWest,sprites.dungeon.greenOuterEast1,sprites.dungeon.purpleSwitchUp,sprites.dungeon.greenOuterEast2,sprites.dungeon.greenOuterSouth2,sprites.dungeon.purpleInnerNorthEast,sprites.dungeon.purpleInnerNorthWest,sprites.dungeon.doorClosedEast,sprites.dungeon.darkGroundSouthWest1,sprites.dungeon.floorDark5,sprites.dungeon.floorDark3,sprites.dungeon.floorDark1,sprites.dungeon.floorDark4,sprites.dungeon.floorLight4,sprites.dungeon.floorLight3,sprites.dungeon.floorMixed,sprites.dungeon.buttonOrange],
